@@ -1447,8 +1447,8 @@ prepare_host()
 	# Add support for Ubuntu 20.04, 21.04 and Mint 20.x
 	if [[ $HOSTRELEASE =~ ^(focal|hirsute|jammy|noble|noble|ulyana|ulyssa|bullseye|bookworm|uma)$ ]]; then
 		hostdeps+=" python2 python3"
-		ln -fs /usr/bin/python2.7 /usr/bin/python2
-		ln -fs /usr/bin/python2.7 /usr/bin/python
+		ln -fs /usr/bin/python3 /usr/bin/python2
+		ln -fs /usr/bin/python3 /usr/bin/python
 	else
 		hostdeps+=" python libpython-dev"
 	fi
@@ -1465,7 +1465,7 @@ prepare_host()
 			display_alert "You are running on an unsupported system" "${HOSTRELEASE:-(unknown)}" "wrn"
 			display_alert "Do not report any errors, warnings or other issues encountered beyond this point" "" "wrn"
 		else
-			exit_with_error "It seems you ignore documentation and run an unsupported build system: ${HOSTRELEASE:-(unknown)}"
+			display_alert "It seems you ignore documentation and run an unsupported build system: ${HOSTRELEASE:-(unknown)}"
 		fi
 	fi
 
